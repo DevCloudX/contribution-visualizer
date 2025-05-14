@@ -14,15 +14,20 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      # Debugging the repository owner name (to confirm if it's the organization or user)
-      - name: Debug Repository Owner
-        run: echo "Repository Owner: ${{ github.repository_owner }}"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Debug the repository owner
+      - name: Generate GitHub Contribution Grid Snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: 'abhishekrana1703' 
 
       # Generates a snake game from a GitHub user’s contributions graph
       - name: Generate GitHub Contribution Grid Snake
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: 'individual_username'  # Replace with the specific GitHub username
+          github_user_name: 'individual_username'  # Replace with your GitHub username
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
